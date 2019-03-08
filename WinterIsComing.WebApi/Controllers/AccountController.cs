@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using WinterIsComing.Data;
 using WinterIsComing.WebApi.Models;
 using WinterIsComing.WebApi.Providers;
 using WinterIsComing.WebApi.Results;

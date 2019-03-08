@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using WinterIsComing.WebApi.Providers;
 using WinterIsComing.WebApi.Models;
+using WinterIsComing.Data;
 
 namespace WinterIsComing.WebApi
 {
