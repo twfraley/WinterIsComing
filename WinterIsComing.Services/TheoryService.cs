@@ -53,6 +53,24 @@ namespace WinterIsComing.Services
             }
         }
 
+        public TheoryDetail GetTheoryById(int theoryId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Theories
+                        .Single(e => e.TheoryId == theoryId);
+                return
+                    new TheoryDetail
+                    {
+                        Subject = entity.Subject,
+                        Content = entity.Content,
+                        DateCreated = entity.DateCreated,
+                    };
+            }
+        }
+
         public bool EditTheory(TheoryEdit model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -61,6 +79,7 @@ namespace WinterIsComing.Services
 
                 entity.Subject = model.Subject;
                 entity.Content = model.Content;
+                entity.DateCreated = DateTimeOffset.Now;
 
                 return ctx.SaveChanges() == 1;
             }

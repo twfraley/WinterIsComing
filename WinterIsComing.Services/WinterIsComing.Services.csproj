@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterService.cs" />
+    <Compile Include="PointValueService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TheoryService.cs" />
   </ItemGroup>
