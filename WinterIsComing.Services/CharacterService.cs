@@ -95,6 +95,5 @@ namespace WinterIsComing.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
     }
 }
