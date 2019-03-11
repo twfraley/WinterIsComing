@@ -84,6 +84,9 @@
     <Compile Include="PointValueModels\PointValueEdit.cs" />
     <Compile Include="PointValueModels\PointValueListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeamCharacterModels\TeamCharacterCreate.cs" />
+    <Compile Include="TeamCharacterModels\TeamCharacterDetails.cs" />
+    <Compile Include="TeamCharacterModels\TeamCharacterListItem.cs" />
     <Compile Include="TeamModels\TeamCreate.cs" />
     <Compile Include="TeamModels\TeamDetail.cs" />
     <Compile Include="TeamModels\TeamListItem.cs" />

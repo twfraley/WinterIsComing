@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 
 namespace WinterIsComing.Data
 {
-    public class TeamCharacter
+    public class TeamCharacterDetails
     {
-        [Key]
         public int TeamCharacterId { get; set; }
 
-        [Required]
         public int CharacterId { get; set; }
         public virtual Character Character { get; set; }
 
-        [Required]
         public int TeamId { get; set; }
         public virtual Team Team { get; set; }
     }

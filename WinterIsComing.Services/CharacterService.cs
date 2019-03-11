@@ -42,8 +42,6 @@ namespace WinterIsComing.Services
                             ImageLink = p.ImageLink,
                         });
                 return query.ToArray();
-
-
             }
         }
 
@@ -97,5 +95,6 @@ namespace WinterIsComing.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
     }
 }
