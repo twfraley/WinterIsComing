@@ -4,11 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WinterIsComing.Data;
+using WinterIsComing.Models;
 
 namespace WinterIsComing.Services
 {
-    class TeamCharacterService
+    public class TeamCharacterService
     {
+        private Guid _userId;
+
+        public TeamCharacterService(Guid userId)
+        {
+            _userId = userId;
+        }
+
         // Add Character to team
         public bool AddCharacterToTeam(int characterId, int teamId)
         {

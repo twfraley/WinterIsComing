@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WinterIsComing.Data;
 
-namespace WinterIsComing.Data
+namespace WinterIsComing.Models
 {
     public class TeamCharacterListItem
     {

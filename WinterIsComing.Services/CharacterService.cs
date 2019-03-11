@@ -10,6 +10,13 @@ namespace WinterIsComing.Services
 {
     public class CharacterService
     {
+        private Guid _userId;
+        
+        public CharacterService(Guid userId)
+        {
+            _userId = userId;
+        }
+
         public bool CreateCharacter(CharacterCreate model)
         {
             Character character = new Character()
