@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WinterIsComing.Data;
 
-namespace WinterIsComing.Data
+namespace WinterIsComing.Models
 {
     public class TeamCharacterCreate
     {
-        public int TeamCharacterId { get; set; }
-
         public int CharacterId { get; set; }
         public virtual Character Character { get; set; }
 
