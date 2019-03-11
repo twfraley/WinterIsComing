@@ -19,7 +19,5 @@ namespace WinterIsComing.Data
         public Guid UserId { get; set; }
 
         public int TotalPoints { get; set; }
-
-        public List<Character> Characters { get; set; }
     }
 }

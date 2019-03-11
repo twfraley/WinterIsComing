@@ -42,8 +42,6 @@ namespace WinterIsComing.Services
                             ImageLink = p.ImageLink,
                         });
                 return query.ToArray();
-
-
             }
         }
 

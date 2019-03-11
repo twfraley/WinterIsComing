@@ -14,9 +14,7 @@ namespace WinterIsComing.Models.CharacterModels
         [DisplayName("Character Name")]
         public string CharacterName { get; set; }
 
-
         public string House { get; set; }
-
 
         public string ImageLink { get; set; }
     }
