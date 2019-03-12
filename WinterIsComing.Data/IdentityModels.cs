@@ -35,6 +35,7 @@ namespace WinterIsComing.Data
 
         public DbSet<Character> Characters { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<TeamCharacter> TeamCharacters { get; set; }
         public DbSet<PointValue> PointValues { get; set; }
         public DbSet<Theory> Theories { get; set; }
 

@@ -10,6 +10,13 @@ namespace WinterIsComing.Services
 {
     public class CharacterService
     {
+        private Guid _userId;
+        
+        public CharacterService(Guid userId)
+        {
+            _userId = userId;
+        }
+
         public bool CreateCharacter(CharacterCreate model)
         {
             Character character = new Character()
@@ -30,11 +37,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                    .Characters
-                    .Select(
-                        p =>
+                var query = ctx.Characters.Select(p =>
                         new CharacterListItem
                         {
                             CharacterName = p.CharacterName,
@@ -42,8 +45,6 @@ namespace WinterIsComing.Services
                             ImageLink = p.ImageLink,
                         });
                 return query.ToArray();
-
-
             }
         }
 
@@ -51,10 +52,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .Characters
-                    .Single(e => e.CharacterId == characterId);
+                var entity = ctx.Characters.Single(e => e.CharacterId == characterId);
                 return
                     new CharacterDetail
                     {
@@ -70,10 +68,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Characters
-                        .Single(e => e.CharacterId == model.CharacterId);
+                var entity = ctx.Characters.Single(e => e.CharacterId == model.CharacterId);
 
                 entity.CharacterName = model.CharacterName;
                 entity.House = model.House;
@@ -87,15 +82,13 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Characters
-                        .Single(e => e.CharacterId == characterId);
+                var entity = ctx.Characters.Single(e => e.CharacterId == characterId);
 
                 ctx.Characters.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
+
     }
 }

@@ -32,11 +32,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                    .PointValues
-                    .Select(
-                        p =>
+                var query = ctx.PointValues.Select(p =>
                         new PointValueListItem
                         {
                             EpisodeAppearance = p.EpisodeAppearance,
@@ -45,9 +41,7 @@ namespace WinterIsComing.Services
                             Death = p.Death,
                             BigKill = p.BigKill
                         });
-                return query.ToArray();
-
-
+                return query.ToList();
             }
         }
 
@@ -55,10 +49,8 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .PointValues
-                    .Single(e => e.PointValueId == pointValueId);
+                var entity = ctx.PointValues.Single(e => e.PointValueId == pointValueId);
+
                 return
                     new PointValueDetail
                     {
@@ -75,10 +67,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .PointValues
-                        .Single(e => e.PointValueId == model.PointValueId);
+                var entity = ctx.PointValues.Single(e => e.PointValueId == model.PointValueId);
 
                 entity.EpisodeAppearance = model.EpisodeAppearance;
                 entity.SurvivedEpisode = model.SurvivedEpisode;
@@ -94,10 +83,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .PointValues
-                        .Single(e => e.PointValueId == pointValueId);
+                var entity = ctx.PointValues.Single(e => e.PointValueId == pointValueId);
 
                 ctx.PointValues.Remove(entity);
 
