@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WinterIsComing.Data;
+using WinterIsComing.Models.CharacterModels;
 
 namespace WinterIsComing.Models.TeamModels
 {
@@ -13,6 +14,6 @@ namespace WinterIsComing.Models.TeamModels
         [Required]
         public string TeamName { get; set; }
 
-        public List<Character> Characters { get; set; }
+        public List<CharacterListItem> Characters { get; set; }
     }
 }

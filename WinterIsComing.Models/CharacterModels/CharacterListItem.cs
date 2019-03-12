@@ -9,6 +9,8 @@ namespace WinterIsComing.Models.CharacterModels
 {
     public class CharacterListItem
     {
+        public int CharacterId { get; set; }
+
         [DisplayName("Character Name")]
         public string CharacterName { get; set; }
         
