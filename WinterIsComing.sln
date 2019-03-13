@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinterIsComing.Models", "Wi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinterIsComing.Services", "WinterIsComing.Services\WinterIsComing.Services.csproj", "{7CF5AD26-D77F-4986-9DB4-A58F61B0DA18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinterIsComing.Contracts", "WinterIsComing.Contracts\WinterIsComing.Contracts.csproj", "{B31CCF9B-7FAE-4040-8900-6C88B72BB804}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7CF5AD26-D77F-4986-9DB4-A58F61B0DA18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CF5AD26-D77F-4986-9DB4-A58F61B0DA18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CF5AD26-D77F-4986-9DB4-A58F61B0DA18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31CCF9B-7FAE-4040-8900-6C88B72BB804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31CCF9B-7FAE-4040-8900-6C88B72BB804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31CCF9B-7FAE-4040-8900-6C88B72BB804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31CCF9B-7FAE-4040-8900-6C88B72BB804}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

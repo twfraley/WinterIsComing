@@ -317,6 +317,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WinterIsComing.Contracts\WinterIsComing.Contracts.csproj">
+      <Project>{b31ccf9b-7fae-4040-8900-6c88b72bb804}</Project>
+      <Name>WinterIsComing.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinterIsComing.Data\WinterIsComing.Data.csproj">
       <Project>{C9DC1A7E-B057-4790-8CA0-B6E253A6B761}</Project>
       <Name>WinterIsComing.Data</Name>

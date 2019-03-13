@@ -25,16 +25,31 @@ namespace WinterIsComing.WebApi.Controllers
         // POST api/values
         public void Post([FromBody]string value)
         {
+            if (User.IsInRole("SuperAdmin"))
+            {
+
+            }
+            return BadRequest();
         }
 
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
+            if (User.IsInRole("SuperAdmin"))
+            {
+
+            }
+            return BadRequest();
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+            if (User.IsInRole("SuperAdmin"))
+            {
+
+            }
+            return BadRequest();
         }
     }
 }
