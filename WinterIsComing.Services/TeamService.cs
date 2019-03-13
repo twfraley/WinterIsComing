@@ -44,7 +44,7 @@ namespace WinterIsComing.Services
                     {
                         TeamId = p.TeamId,
                         TeamName = p.TeamName,
-                        TotalPoints = p.TotalPoints,
+                        TotalPoints = CalculatePoints(GenerateTeamById(p.TeamId)),
                         Characters = GenerateTeamById(p.TeamId)
                     });
                 return query.ToList();
@@ -62,7 +62,7 @@ namespace WinterIsComing.Services
                     {
                         TeamId = entity.TeamId,
                         TeamName = entity.TeamName,
-                        TotalPoints = entity.TotalPoints,
+                        TotalPoints = CalculatePoints(GenerateTeamById(entity.TeamId)),
                         Characters = GenerateTeamById(entity.TeamId)
                     };
             }
@@ -119,5 +119,44 @@ namespace WinterIsComing.Services
             return characters;
         }
 
+        private int CalculatePoints(List<CharacterListItem> characters)
+        {
+            int points = 0;
+            using (var ctx = new ApplicationDbContext())
+            {
+                foreach (var character in characters)
+                {
+                var query = ctx.PointValues.Where(r => r.CharacterId == character.CharacterId).ToList();
+                    foreach (var item in query)
+                    {
+                        if (item.EpisodeAppearance)
+                        {
+                            points += 4;
+                        }
+
+                        if (item.SurvivedEpisode)
+                        {
+                            points += 10;
+                        }
+
+                        if (item.GetKill)
+                        {
+                            points += 5;
+                        }
+
+                        if (item.BigKill)
+                        {
+                            points += 10;
+                        }
+
+                        if (item.Death)
+                        {
+                            points -= 10;
+                        }
+                    }
+                }
+                    return points;
+            }
+        }
     }
 }
