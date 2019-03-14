@@ -10,6 +10,13 @@ namespace WinterIsComing.Services
 {
     public class PointValueService
     {
+        private Guid _userId;
+
+        public PointValueService(Guid userId)
+        {
+            _userId = userId;
+        }
+
         public bool CreatePointValue(PointValueCreate model)
         {
             using (var ctx = new ApplicationDbContext())
