@@ -10,6 +10,9 @@ namespace WinterIsComing.Models.PointValueModels
     public class PointValueCreate
     {
         [Required]
+        public int CharacterId { get; set; }
+
+        [Required]
         public bool SurvivedEpisode { get; set; }
 
         [Required]

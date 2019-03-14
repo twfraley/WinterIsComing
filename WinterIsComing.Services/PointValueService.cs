@@ -10,23 +10,32 @@ namespace WinterIsComing.Services
 {
     public class PointValueService
     {
+        private Guid _userId;
+
+        public PointValueService(Guid userId)
+        {
+            _userId = userId;
+        }
+
         public bool CreatePointValue(PointValueCreate model)
         {
-            PointValue pointValue = new PointValue()
-            {
-                EpisodeAppearance = model.EpisodeAppearance,
-                SurvivedEpisode = model.SurvivedEpisode,
-                GetKill = model.GetKill,
-                Death = model.Death,
-                BigKill = model.BigKill
-            };
-
             using (var ctx = new ApplicationDbContext())
             {
+                var character = ctx.Characters.Single(p => p.CharacterId == model.CharacterId);
+                PointValue pointValue = new PointValue()
+                {
+                    CharacterId = character.CharacterId,
+                    EpisodeAppearance = model.EpisodeAppearance,
+                    SurvivedEpisode = model.SurvivedEpisode,
+                    GetKill = model.GetKill,
+                    Death = model.Death,
+                    BigKill = model.BigKill
+                };
                 ctx.PointValues.Add(pointValue);
                 return ctx.SaveChanges() == 1;
             }
         }
+
 
         public IEnumerable<PointValueListItem> GetPointValues()
         {
@@ -35,6 +44,7 @@ namespace WinterIsComing.Services
                 var query = ctx.PointValues.Select(p =>
                         new PointValueListItem
                         {
+                            CharacterId = p.CharacterId,
                             EpisodeAppearance = p.EpisodeAppearance,
                             SurvivedEpisode = p.SurvivedEpisode,
                             GetKill = p.GetKill,

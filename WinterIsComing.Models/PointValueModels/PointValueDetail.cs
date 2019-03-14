@@ -9,6 +9,9 @@ namespace WinterIsComing.Models.PointValueModels
 {
     public class PointValueDetail
     {
+        [DisplayName("Character ID")]
+        public int CharacterId { get; set; }
+
         [DisplayName("Survived the Episode")]
         public bool SurvivedEpisode { get; set; }
 

@@ -58,11 +58,20 @@ namespace WinterIsComing.WebApi.Controllers
         public UserInfoViewModel GetUserInfo()
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-
+            string role = "";
+            if (User.IsInRole("Admin"))
+            {
+                role = "Admin";
+            }
+            if (User.IsInRole("SuperAdmin"))
+            {
+                role = "SuperAdmin";
+            }
             return new UserInfoViewModel
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
+                Role = role,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
         }
@@ -113,6 +122,36 @@ namespace WinterIsComing.WebApi.Controllers
                 Logins = logins,
                 ExternalLoginProviders = GetExternalLogins(returnUrl, generateState)
             };
+        }
+
+        [HttpGet]
+        [Route("GetRole")]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<IHttpActionResult> GetRole()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return Ok(
+                    new RoleData()
+                    {
+                        Role = "Admin",
+                        Value = true,
+                    });
+            }
+            if (User.IsInRole("SuperAdmin"))
+            {
+                return Ok(new RoleData()
+                {
+                    Role = "Admin",
+                    Value = true,
+                });
+            }
+            return Ok(new RoleData()
+            {
+                Role = "",
+                Value = false,
+            });
         }
 
         // POST api/Account/ChangePassword
