@@ -12,6 +12,10 @@ namespace WinterIsComing.Data
         [Key]
         public int PointValueId { get; set; }
 
+        public int CharacterId { get; set; }
+
+        public virtual Character Character { get; set; }
+
         [Required]
         public bool SurvivedEpisode { get; set; }
 
@@ -26,5 +30,7 @@ namespace WinterIsComing.Data
 
         [Required]
         public bool BigKill { get; set; }
+
+
     }
 }

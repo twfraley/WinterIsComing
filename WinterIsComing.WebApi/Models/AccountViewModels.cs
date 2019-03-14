@@ -29,6 +29,8 @@ namespace WinterIsComing.WebApi.Models
     {
         public string Email { get; set; }
 
+        public string Role { get; set; }
+
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }
@@ -39,5 +41,11 @@ namespace WinterIsComing.WebApi.Models
         public string LoginProvider { get; set; }
 
         public string ProviderKey { get; set; }
+    }
+
+    public class RoleData
+    {
+        public string Role { get; set; }
+        public bool Value { get; set; }
     }
 }

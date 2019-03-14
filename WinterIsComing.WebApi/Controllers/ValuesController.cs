@@ -1,40 +1,84 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WinterIsComing.Models.PointValueModels;
+using WinterIsComing.Services;
 
 namespace WinterIsComing.WebApi.Controllers
 {
-    [Authorize]
+    [RoutePrefix("api/PointValues")]
     public class ValuesController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        [Route("All")]
+        public IHttpActionResult GetAll()
         {
-            return new string[] { "value1", "value2" };
+            var service = new PointValueService(Guid.Parse(User.Identity.GetUserId()));
+            var pointValue = service.GetPointValues();
+            return Ok(pointValue);
         }
 
         // GET api/values/5
-        public string Get(int id)
+        [Route("Single/{id:int}")]
+        public IHttpActionResult GetPointValuesById(int pointValueId)
         {
-            return "value";
+            var service = new PointValueService(Guid.Parse(User.Identity.GetUserId()));
+            var pointValue = service.GetPointValueById(pointValueId);
+            return Ok(pointValue);
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public IHttpActionResult Post(PointValueCreate pointValue)
         {
+            if (User.IsInRole("SuperAdmin"))
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                var service = new PointValueService(Guid.Parse(User.Identity.GetUserId()));
+
+                if (!service.CreatePointValue(pointValue))
+                    return InternalServerError();
+
+                return Ok();
+            }
+            return BadRequest();
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public IHttpActionResult Put(PointValueEdit pointValue)
         {
+            if (User.IsInRole("SuperAdmin"))
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                var service = new PointValueService(Guid.Parse(User.Identity.GetUserId()));
+
+                if (!service.EditPointValue(pointValue))
+                    return InternalServerError();
+
+                return Ok();
+            }
+            return BadRequest();
         }
 
-        // DELETE api/values/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
         {
+            if (User.IsInRole("SuperAdmin"))
+            {
+                var service = new PointValueService(Guid.Parse(User.Identity.GetUserId()));
+
+                if (!service.DeletePointValue(id))
+                    return InternalServerError();
+
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }

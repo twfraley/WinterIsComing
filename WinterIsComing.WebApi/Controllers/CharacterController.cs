@@ -32,42 +32,53 @@ namespace WinterIsComing.WebApi.Controllers
         [HttpPost]
         public IHttpActionResult Post(CharacterCreate character)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (User.IsInRole("SuperAdmin"))
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
-            var service = new CharacterService(Guid.Parse(User.Identity.GetUserId()));
+                var service = new CharacterService(Guid.Parse(User.Identity.GetUserId()));
 
-            if (!service.CreateCharacter(character))
-                return InternalServerError();
+                if (!service.CreateCharacter(character))
+                    return InternalServerError();
 
-            return Ok();
+                return Ok();
+            }
+            return BadRequest();
         }
 
         [HttpPut]
         public IHttpActionResult Put(CharacterEdit character)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (User.IsInRole("SuperAdmin"))
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
-            var service = new CharacterService(Guid.Parse(User.Identity.GetUserId()));
+                var service = new CharacterService(Guid.Parse(User.Identity.GetUserId()));
 
-            if (!service.EditCharacter(character))
-                return InternalServerError();
+                if (!service.EditCharacter(character))
+                    return InternalServerError();
 
-            return Ok();
+                return Ok();
+            }
+            return BadRequest();
         }
 
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var service = new CharacterService(Guid.Parse(User.Identity.GetUserId()));
+            if (User.IsInRole("SuperAdmin"))
+            {
+                var service = new CharacterService(Guid.Parse(User.Identity.GetUserId()));
 
-            if (!service.DeleteCharacter(id))
-                return InternalServerError();
+                if (!service.DeleteCharacter(id))
+                    return InternalServerError();
 
-            return Ok();
+                return Ok();
+            }
+            return BadRequest();
         }
-
 
     }
 }
