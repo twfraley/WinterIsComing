@@ -56,7 +56,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Teams.Single(e => e.TeamId == teamId);
+                var entity = ctx.Teams.SingleOrDefault(e => e.TeamId == teamId);
                 var characters = GenerateTeamById(entity.TeamId);
                 return
                     new TeamDetail
