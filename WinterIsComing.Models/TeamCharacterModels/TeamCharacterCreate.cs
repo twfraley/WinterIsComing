@@ -11,9 +11,9 @@ namespace WinterIsComing.Models
     public class TeamCharacterCreate
     {
         public int CharacterId { get; set; }
-        public virtual Character Character { get; set; }
+        //public virtual Character Character { get; set; }
 
         public int TeamId { get; set; }
-        public virtual Team Team { get; set; }
+        //public virtual Team Team { get; set; }
     }
 }
