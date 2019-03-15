@@ -56,14 +56,15 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Teams.Single(e => e.TeamId == teamId);
+                var entity = ctx.Teams.SingleOrDefault(e => e.TeamId == teamId);
+                var characters = GenerateTeamById(entity.TeamId);
                 return
                     new TeamDetail
                     {
                         TeamId = entity.TeamId,
                         TeamName = entity.TeamName,
-                        TotalPoints = CalculatePoints(GenerateTeamById(entity.TeamId)),
-                        Characters = GenerateTeamById(entity.TeamId)
+                        TotalPoints = CalculatePoints(characters),
+                        Characters = characters
                     };
             }
         }
@@ -96,11 +97,11 @@ namespace WinterIsComing.Services
 
         private List<CharacterListItem> GenerateTeamById(int teamId)
         {
-            var characters = new List<CharacterListItem>();
 
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.TeamCharacters.Where(q => q.TeamId == teamId);
+                var characters = new List<CharacterListItem>();
+                var query = ctx.TeamCharacters.Where(q => q.TeamId == teamId).ToList();
 
                 foreach (var item in query)
                 {
@@ -114,9 +115,9 @@ namespace WinterIsComing.Services
 
                     characters.Add(character);
                 }
+                return characters;
             }
 
-            return characters;
         }
 
         private int CalculatePoints(List<CharacterListItem> characters)
@@ -126,7 +127,7 @@ namespace WinterIsComing.Services
             {
                 foreach (var character in characters)
                 {
-                var query = ctx.PointValues.Where(r => r.CharacterId == character.CharacterId).ToList();
+                    var query = ctx.PointValues.Where(r => r.CharacterId == character.CharacterId).ToList();
                     foreach (var item in query)
                     {
                         if (item.EpisodeAppearance)
@@ -155,7 +156,7 @@ namespace WinterIsComing.Services
                         }
                     }
                 }
-                    return points;
+                return points;
             }
         }
     }

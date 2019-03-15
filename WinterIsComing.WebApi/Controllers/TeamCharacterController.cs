@@ -21,7 +21,7 @@ namespace WinterIsComing.WebApi.Controllers
             return Ok(team);
         }
 
-        [Route("Single/{id:int}")]
+        [Route("Single/{teamId:int}")]
         public IHttpActionResult GetTeamMembersByTeamId(int teamId)
         {
             var service = new TeamCharacterService(Guid.Parse(User.Identity.GetUserId()));

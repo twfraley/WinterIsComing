@@ -13,7 +13,5 @@ namespace WinterIsComing.Models.TeamModels
     {
         [Required]
         public string TeamName { get; set; }
-
-        public List<CharacterListItem> Characters { get; set; }
     }
 }

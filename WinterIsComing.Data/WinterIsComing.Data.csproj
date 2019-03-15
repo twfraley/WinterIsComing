@@ -77,11 +77,6 @@
   <ItemGroup>
     <Compile Include="Character.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201903111520005_AddedTeamCharacter.cs" />
-    <Compile Include="Migrations\201903111520005_AddedTeamCharacter.Designer.cs">
-      <DependentUpon>201903111520005_AddedTeamCharacter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PointValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />
@@ -91,11 +86,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903111520005_AddedTeamCharacter.resx">
-      <DependentUpon>201903111520005_AddedTeamCharacter.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
