@@ -40,6 +40,7 @@ namespace WinterIsComing.Services
                 var query = ctx.Characters.Select(p =>
                         new CharacterListItem
                         {
+                            CharacterId = p.CharacterId,
                             CharacterName = p.CharacterName,
                             House = p.House,
                             ImageLink = p.ImageLink,
