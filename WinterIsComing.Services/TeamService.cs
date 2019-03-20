@@ -48,14 +48,14 @@ namespace WinterIsComing.Services
                         TeamName = p.TeamName,
                         Characters = GenerateTeamById(p.TeamId)
                     });
-            }
 
-            foreach (var item in query)
-            {
-                item.TotalPoints = CalculatePoints(item.Characters);
-            }
+                foreach (var item in query)
+                {
+                    item.TotalPoints = CalculatePoints(item.Characters);
+                }
 
-            return query.ToList();
+                return query.ToList();
+            }
         }
 
 
