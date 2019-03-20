@@ -21,12 +21,12 @@ namespace WinterIsComing.WebApi.Controllers
             return Ok(pointValue);
         }
 
-        // GET api/values/5
+        
         [Route("Single/{id:int}")]
-        public IHttpActionResult GetPointValuesById(int pointValueId)
+        public IHttpActionResult GetPointValuesById(int id)
         {
             var service = new PointValueService(Guid.Parse(User.Identity.GetUserId()));
-            var pointValue = service.GetPointValueById(pointValueId);
+            var pointValue = service.GetPointValueById(id);
             return Ok(pointValue);
         }
 
