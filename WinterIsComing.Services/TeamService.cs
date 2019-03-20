@@ -50,6 +50,7 @@ namespace WinterIsComing.Services
 
                 foreach (var item in query)
                 {
+                    item.Characters = GenerateTeamById(item.TeamId);
                     item.TotalPoints = CalculatePoints(item.Characters);
                 }
 
