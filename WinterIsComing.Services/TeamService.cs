@@ -35,7 +35,7 @@ namespace WinterIsComing.Services
         }
 
 
-        public IEnumerable<TeamListItem> GetTeams()
+        public List<TeamListItem> GetTeams()
         {
             IQueryable<TeamListItem> query;
 
@@ -48,13 +48,15 @@ namespace WinterIsComing.Services
                         TeamName = p.TeamName,
                     });
 
+                query.ToList();
+
                 foreach (var item in query)
                 {
                     item.Characters = GenerateTeamById(item.TeamId);
                     item.TotalPoints = CalculatePoints(item.Characters);
                 }
 
-                return query.ToList();
+                return query;
             }
         }
 
