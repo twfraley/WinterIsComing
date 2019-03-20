@@ -17,7 +17,7 @@ namespace WinterIsComing.Models.TeamModels
         public string TeamName { get; set; }
 
         [DisplayName("Total Team Points")]
-        public int TotalPoints { get; set; }
+        public int? TotalPoints { get; set; }
         
         public List<CharacterListItem> Characters { get; set; }
     }
