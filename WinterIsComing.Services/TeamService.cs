@@ -37,25 +37,23 @@ namespace WinterIsComing.Services
 
         public IEnumerable<TeamListItem> GetTeams()
         {
+            IQueryable<TeamListItem> query;
 
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Teams.Select(p =>
+                query = ctx.Teams.Select(p =>
                     new TeamListItem
                     {
                         TeamId = p.TeamId,
                         TeamName = p.TeamName,
                     });
 
-                query.ToList();
-
                 foreach (var item in query)
                 {
-                    item.Characters = GenerateTeamById(item.TeamId);
                     item.TotalPoints = CalculatePoints(item.Characters);
                 }
 
-                return query;
+                return query.ToList();
             }
         }
 
