@@ -44,6 +44,7 @@ namespace WinterIsComing.Services
                 var query = ctx.PointValues.Select(p =>
                         new PointValueListItem
                         {
+                            PointValueId = p.PointValueId,
                             CharacterId = p.CharacterId,
                             EpisodeAppearance = p.EpisodeAppearance,
                             SurvivedEpisode = p.SurvivedEpisode,
