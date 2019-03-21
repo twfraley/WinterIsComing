@@ -65,6 +65,7 @@ namespace WinterIsComing.Services
                 return
                     new PointValueDetail
                     {
+                        PointValueId = entity.PointValueId,
                         EpisodeAppearance = entity.EpisodeAppearance,
                         SurvivedEpisode = entity.SurvivedEpisode,
                         GetKill = entity.GetKill,

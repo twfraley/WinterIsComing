@@ -9,6 +9,8 @@ namespace WinterIsComing.Models.PointValueModels
 {
     public class PointValueDetail
     {
+        public int PointValueId { get; set; }
+
         [DisplayName("Character ID")]
         public int CharacterId { get; set; }
 
