@@ -80,6 +80,7 @@ namespace WinterIsComing.Services
             {
                 var entity = ctx.PointValues.Single(e => e.PointValueId == model.PointValueId);
 
+                entity.CharacterId = model.CharacterId;
                 entity.EpisodeAppearance = model.EpisodeAppearance;
                 entity.SurvivedEpisode = model.SurvivedEpisode;
                 entity.GetKill = model.GetKill;
