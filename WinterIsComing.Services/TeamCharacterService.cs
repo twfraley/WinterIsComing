@@ -72,7 +72,50 @@ namespace WinterIsComing.Services
                 return teamList;
             }
         }
+        
+        // Get characters NOT on team
+        public List<CharacterListItem> GetAvailableCharacters(int teamId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.TeamCharacters.Where(q => q.TeamId == teamId).ToList();
+                var characterList = ctx.Characters.Select(c => new CharacterListItem
+                {
+                    CharacterId = c.CharacterId,
+                    CharacterName = c.CharacterName,
+                    House = c.House,
+                    ImageLink = c.ImageLink
+                }).ToList();
 
+                var excludeList = new List<CharacterListItem>();
+                var teamList = characterList;
+
+                foreach (var character in characterList)
+                {
+                    foreach (var item in query)
+                    {
+                        if (character.CharacterId == item.CharacterId)
+                        {
+                            excludeList.Add(character);
+                        }
+                    }
+                }
+
+                foreach (var excludeCharacter in excludeList)
+                {
+                    foreach (var character in characterList)
+                    {
+                        if (character.CharacterId == excludeCharacter.CharacterId)
+                        {
+                            teamList.Remove(character);
+                        }
+                    }
+                }
+
+                return teamList;
+            }
+        }
+        
         // Remove character from team
         public bool DeleteTeamCharacter(int characterId, int teamId)
         {
