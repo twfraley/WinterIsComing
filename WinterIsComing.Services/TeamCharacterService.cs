@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WinterIsComing.Data;
 using WinterIsComing.Models;
+using WinterIsComing.Models.CharacterModels;
 
 namespace WinterIsComing.Services
 {
