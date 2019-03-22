@@ -10,9 +10,6 @@ namespace WinterIsComing.WebApi.Controllers
     [Authorize]
     public class TheoryController : ApiController
     {
-        //public IHttpActionResult GetAll()
-        //{
 
-        //}
     }
 }
