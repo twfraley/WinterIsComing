@@ -104,9 +104,8 @@ namespace WinterIsComing.Services
             }
         }
 
-        private List<CharacterListItem> GenerateTeamById(int teamId)
+        public List<CharacterListItem> GenerateTeamById(int teamId)
         {
-
             using (var ctx = new ApplicationDbContext())
             {
                 var characters = new List<CharacterListItem>();
