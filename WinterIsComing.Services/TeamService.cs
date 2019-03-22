@@ -84,11 +84,19 @@ namespace WinterIsComing.Services
             {
                 var entity = ctx.Teams.Single(e => e.TeamId == model.TeamId);
 
-                entity.TeamId = model.TeamId;
-                entity.TeamName = model.TeamName;
-                entity.TotalPoints = model.TotalPoints;
+                if (entity.UserId == _userId)
+                {
+                    entity.TeamId = model.TeamId;
+                    entity.TeamName = model.TeamName;
+                    entity.TotalPoints = model.TotalPoints;
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
         }
 
@@ -125,7 +133,6 @@ namespace WinterIsComing.Services
                 }
                 return characters;
             }
-
         }
 
         private int CalculatePoints(List<CharacterListItem> characters)
@@ -136,6 +143,7 @@ namespace WinterIsComing.Services
                 foreach (var character in characters)
                 {
                     var query = ctx.PointValues.Where(r => r.CharacterId == character.CharacterId).ToList();
+
                     foreach (var item in query)
                     {
                         if (item.EpisodeAppearance)
@@ -162,10 +170,13 @@ namespace WinterIsComing.Services
                         {
                             points -= 10;
                         }
+
                     }
                 }
+
                 return points;
             }
         }
+
     }
 }
