@@ -29,7 +29,14 @@ namespace WinterIsComing.WebApi.Controllers
             return Ok(team);
         }
 
-        // TK & JA - Would we rather feed this a model or just characterId and teamId?
+        [Route("AllButTeam/{teamId:int}")]
+        public IHttpActionResult GetAllButTeam(int teamId)
+        {
+            var service = new TeamCharacterService(Guid.Parse(User.Identity.GetUserId()));
+            var team = service.GetAvailableCharacters(teamId);
+            return Ok(team);
+        }
+        
         [HttpPost]
         public IHttpActionResult Post(TeamCharacterCreate model)
         {
@@ -44,7 +51,6 @@ namespace WinterIsComing.WebApi.Controllers
             return Ok();
         }
 
-        // TK & JA - same question as above (at HttpPost) here
         [HttpDelete]
         public IHttpActionResult Delete(int characterId, int teamId)
         {
