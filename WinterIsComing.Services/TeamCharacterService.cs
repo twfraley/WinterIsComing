@@ -18,34 +18,19 @@ namespace WinterIsComing.Services
             _userId = userId;
         }
 
-        // Add Character to team
-        public bool AddCharacterToTeam(int characterId, int teamId)
-        {
-            TeamCharacter teamCharacter = new TeamCharacter
-            {
-                CharacterId = characterId,
-                TeamId = teamId
-            };
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.TeamCharacters.Add(teamCharacter);
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        // Get all TeamCharacter items.  Probably not used.
+        // Get all TeamCharacter items.
         public List<TeamCharacterListItem> GetAllTeamCharacterItems()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx.TeamCharacters.Select(p => new TeamCharacterListItem
-                        {
-                            TeamCharacterId = p.TeamCharacterId,
-                            CharacterId = p.CharacterId,
-                            TeamId = p.TeamId
-                        });
+                    {
+                        TeamCharacterId = p.TeamCharacterId,
+                        CharacterId = p.CharacterId,
+                        TeamId = p.TeamId
+                    });
+
                 return query.ToList();
             }
         }
@@ -73,8 +58,8 @@ namespace WinterIsComing.Services
                 return teamList;
             }
         }
-        
-        // Get characters NOT on team
+
+        // Get characters NOT on team (by team id)
         public List<CharacterListItem> GetAvailableCharacters(int teamId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -116,7 +101,24 @@ namespace WinterIsComing.Services
                 return teamList;
             }
         }
-        
+
+        // Add Character to team
+        public bool AddCharacterToTeam(int characterId, int teamId)
+        {
+            TeamCharacter teamCharacter = new TeamCharacter
+            {
+                UserId = _userId,
+                CharacterId = characterId,
+                TeamId = teamId
+            };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.TeamCharacters.Add(teamCharacter);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         // Remove character from team
         public bool DeleteTeamCharacter(int characterId, int teamId)
         {
@@ -124,11 +126,19 @@ namespace WinterIsComing.Services
             {
                 var entity = ctx.TeamCharacters.Single(e => e.CharacterId == characterId && e.TeamId == teamId);
 
-                ctx.TeamCharacters.Remove(entity);
+                if (entity.UserId == _userId)
+                {
+                    ctx.TeamCharacters.Remove(entity);
+                    return ctx.SaveChanges() == 1;
+                }
+                else
+                {
+                    return false;
+                }
 
-                return ctx.SaveChanges() == 1;
             }
         }
+
 
     }
 }

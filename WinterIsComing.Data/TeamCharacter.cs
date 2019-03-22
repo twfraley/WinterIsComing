@@ -13,6 +13,9 @@ namespace WinterIsComing.Data
         public int TeamCharacterId { get; set; }
 
         [Required]
+        public Guid UserId { get; set; }
+
+        [Required]
         public int CharacterId { get; set; }
         public virtual Character Character { get; set; }
 
