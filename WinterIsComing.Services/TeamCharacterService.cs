@@ -89,7 +89,7 @@ namespace WinterIsComing.Services
                 }).ToList();
 
                 var excludeList = new List<CharacterListItem>();
-                var teamList = characterList;
+                var teamList = characterList.ToList();
 
                 foreach (var character in characterList)
                 {
