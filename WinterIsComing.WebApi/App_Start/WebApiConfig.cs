@@ -13,7 +13,7 @@ namespace WinterIsComing.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            var enableCorsAttribute = new EnableCorsAttribute("*", "Origin, Content-type, Accept", "GET, PUT, POST, DELETE, OPTIONS");
+            var enableCorsAttribute = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(enableCorsAttribute);
 
             // Web API configuration and services
