@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -21,6 +22,7 @@ using WinterIsComing.WebApi.Results;
 namespace WinterIsComing.WebApi.Controllers
 {
     [Authorize]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
