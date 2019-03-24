@@ -11,7 +11,6 @@ using WinterIsComing.Services;
 
 namespace WinterIsComing.WebApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/TeamCharacter")]
     public class TeamCharacterController : ApiController
     {

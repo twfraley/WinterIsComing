@@ -22,7 +22,6 @@ using WinterIsComing.WebApi.Results;
 namespace WinterIsComing.WebApi.Controllers
 {
     [Authorize]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
