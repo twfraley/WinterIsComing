@@ -31,6 +31,14 @@ namespace WinterIsComing.WebApi.Controllers
             return Ok(pointValue);
         }
 
+        [Route("SingleByCharacter/{characterId:int}")]
+        public IHttpActionResult GetPointValuesByCharacterId(int id)
+        {
+            var service = new PointValueService(Guid.Parse(User.Identity.GetUserId()));
+            var pointValue = service.GetPointValueByCharacterId(id);
+            return Ok(pointValue);
+        }
+
         [HttpPost]
         public IHttpActionResult Post(PointValueCreate pointValue)
         {

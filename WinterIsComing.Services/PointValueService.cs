@@ -21,7 +21,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var character = 
+                var character =
                     ctx
                     .Characters
                     .Single(p => p.CharacterId == model.CharacterId);
@@ -47,7 +47,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = 
+                var query =
                     ctx
                     .PointValues
                     .Select(p =>
@@ -70,7 +70,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = 
+                var entity =
                     ctx
                     .PointValues
                     .Single(e => e.PointValueId == pointValueId);
@@ -89,11 +89,33 @@ namespace WinterIsComing.Services
             }
         }
 
+        public PointValueDetail GetPointValueByCharacterId(int characterId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .PointValues
+                    .Single(e => e.CharacterId == characterId);
+
+                return
+                    new PointValueDetail
+                    { PointValueId = entity.PointValueId,
+                        CharacterId = entity.CharacterId,
+                        EpisodeAppearance = entity.EpisodeAppearance,
+                        SurvivedEpisode = entity.SurvivedEpisode,
+                        GetKill = entity.GetKill,
+                        Death = entity.Death,
+                        BigKill = entity.BigKill
+                    };
+            }
+        }
+
         public bool EditPointValue(PointValueEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = 
+                var entity =
                     ctx
                     .PointValues
                     .Single(e => e.PointValueId == model.PointValueId);
@@ -113,7 +135,7 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = 
+                var entity =
                     ctx
                     .PointValues
                     .Single(e => e.PointValueId == pointValueId);
