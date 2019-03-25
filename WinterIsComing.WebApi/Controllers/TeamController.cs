@@ -23,7 +23,7 @@ namespace WinterIsComing.WebApi.Controllers
         }
 
         [Route("Single/{id:int}")]
-        public IHttpActionResult GetByID(int id)
+        public IHttpActionResult GetById(int id)
         {
             var service = new TeamService(Guid.Parse(User.Identity.GetUserId()));
             var team = service.GetTeamById(id);

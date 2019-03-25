@@ -24,7 +24,10 @@ namespace WinterIsComing.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
-                    ctx.TeamCharacters.Select(p => new TeamCharacterListItem
+                    ctx
+                    .TeamCharacters
+                    .Select(p =>
+                    new TeamCharacterListItem
                     {
                         TeamCharacterId = p.TeamCharacterId,
                         CharacterId = p.CharacterId,
@@ -40,7 +43,12 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.TeamCharacters.Where(e => e.TeamId == teamId).ToList();
+                var query =
+                    ctx
+                    .TeamCharacters
+                    .Where(e => e.TeamId == teamId)
+                    .ToList();
+
                 var teamList = new List<TeamCharacterListItem>();
 
                 foreach (TeamCharacter item in query)
@@ -64,14 +72,24 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.TeamCharacters.Where(q => q.TeamId == teamId).ToList();
-                var characterList = ctx.Characters.Select(c => new CharacterListItem
-                {
-                    CharacterId = c.CharacterId,
-                    CharacterName = c.CharacterName,
-                    House = c.House,
-                    ImageLink = c.ImageLink
-                }).ToList();
+                var query =
+                    ctx
+                    .TeamCharacters
+                    .Where(q => q.TeamId == teamId)
+                    .ToList();
+
+                var characterList =
+                    ctx
+                    .Characters
+                    .Select(c =>
+                    new CharacterListItem
+                    {
+                        CharacterId = c.CharacterId,
+                        CharacterName = c.CharacterName,
+                        House = c.House,
+                        ImageLink = c.ImageLink
+                    })
+                .ToList();
 
                 var excludeList = new List<CharacterListItem>();
                 var teamList = characterList.ToList();
@@ -124,7 +142,10 @@ namespace WinterIsComing.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.TeamCharacters.Single(e => e.CharacterId == characterId && e.TeamId == teamId);
+                var entity =
+                    ctx
+                    .TeamCharacters
+                    .Single(e => e.CharacterId == characterId && e.TeamId == teamId);
 
                 if (entity.UserId == _userId)
                 {
