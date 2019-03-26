@@ -13,6 +13,8 @@ namespace WinterIsComing.Models.TeamModels
     {
         public int TeamId { get; set; }
 
+        public Guid UserId { get; set; }
+
         [DisplayName("Team Name")]
         public string TeamName { get; set; }
 

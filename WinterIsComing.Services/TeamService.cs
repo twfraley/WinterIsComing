@@ -81,7 +81,8 @@ namespace WinterIsComing.Services
                         TeamId = entity.TeamId,
                         TeamName = entity.TeamName,
                         TotalPoints = CalculatePoints(characters),
-                        Characters = characters
+                        Characters = characters,
+                        UserId = entity.UserId
                     };
             }
         }
@@ -120,9 +121,16 @@ namespace WinterIsComing.Services
                     .Teams
                     .Single(e => e.TeamId == teamId);
 
-                ctx.Teams.Remove(entity);
+                if (entity.UserId == _userId)
+                {
+                    ctx.Teams.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
