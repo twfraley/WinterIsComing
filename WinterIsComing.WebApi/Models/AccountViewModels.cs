@@ -34,6 +34,8 @@ namespace WinterIsComing.WebApi.Models
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }
+
+        public Guid? UserId { get; set; }
     }
 
     public class UserLoginInfoViewModel

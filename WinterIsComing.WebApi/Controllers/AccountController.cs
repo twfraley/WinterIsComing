@@ -73,7 +73,8 @@ namespace WinterIsComing.WebApi.Controllers
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
                 Role = role,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null,
+                UserId = Guid.Parse(User.Identity.GetUserId())
             };
         }
 
