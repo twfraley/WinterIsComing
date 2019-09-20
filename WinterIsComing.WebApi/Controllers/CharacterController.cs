@@ -17,7 +17,16 @@ namespace WinterIsComing.WebApi.Controllers
         [Route("All")]
         public IHttpActionResult GetAll()
         {
-            var service = new CharacterService(Guid.Parse(User.Identity.GetUserId()));
+			CharacterService service;
+			try
+			{
+				service = new CharacterService(Guid.Parse(User.Identity.GetUserId()));
+			}
+			catch
+			{
+				Guid fakeId = new Guid();
+				service = new CharacterService(fakeId);
+			}
             var characters = service.GetCharacters();
             return Ok(characters);
         }
