@@ -13,8 +13,8 @@ namespace WinterIsComing.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            var enableCorsAttribute = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(enableCorsAttribute);
+            // var enableCorsAttribute = new EnableCorsAttribute("*", "*", "*");
+            // config.EnableCors(enableCorsAttribute);
 
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
